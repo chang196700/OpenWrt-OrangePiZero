@@ -31,6 +31,7 @@ env:
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: true
   UPLOAD_RELEASE: true
+  CUSTOM_DIR: custom
   TZ: Asia/Shanghai
 
 jobs:
@@ -60,6 +61,10 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+
+    - name: Override custom files
+      run: |
+        [ -d $CUSTOM_DIR ] && mv $FEEDS_CONF/* openwrt/ -rf
 
     - name: Load custom feeds
       run: |
