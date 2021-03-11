@@ -64,7 +64,7 @@ jobs:
 
     - name: Override custom files
       run: |
-        [ -d $CUSTOM_DIR ] && mv $CUSTOM_DIR/* openwrt/ -f
+        [ -d $CUSTOM_DIR ] && mv $CUSTOM_DIR/* openwrt/ -rf
 
     - name: Load custom feeds
       run: |
